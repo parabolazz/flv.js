@@ -106,6 +106,10 @@ class FetchStreamLoader extends BaseLoader {
             // no-cors means 'disregard cors policy', which can only be used in ServiceWorker
             params.mode = 'same-origin';
         }
+        // abort fetch
+        if (this._config.signal) {
+          params.signal = this._config.signal
+        }
 
         // withCredentials is disabled by default
         if (dataSource.withCredentials) {
